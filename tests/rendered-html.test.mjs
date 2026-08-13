@@ -43,6 +43,12 @@ test("server-renders the CJ/CJM workspace", async () => {
   assert.match(html, /Операционный слой/);
   assert.match(html, /Что необходимо решить/);
   assert.match(html, /Приоритетный backlog улучшений/);
+  assert.match(html, /роли исполнения/);
+  assert.match(html, /этапов сквозного пути клиента/);
+  assert.match(html, /Набор представлен в двух вариациях цветов выключателя/);
+  assert.match(html, /Подтвердить запуск пилотной акции, назначить ответственных владельцев/);
+  assert.match(html, /Обучение сметчиков и внедрение услуги/);
+  assert.doesNotMatch(html, /Рабочая комплектация из документа|Смысловые допущения и отмеченные пробелы/);
   assert.doesNotMatch(html, /Эмоциональная линия|Гипотеза напряжения клиента/);
   assert.doesNotMatch(html, /lorem ipsum/i);
 });

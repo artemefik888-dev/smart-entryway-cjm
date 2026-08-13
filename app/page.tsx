@@ -21,7 +21,6 @@ import {
   products,
   roles,
   sessionSteps,
-  sourceGaps,
   statusLabels,
   validation,
   type StatusKind,
@@ -147,8 +146,9 @@ export default function Home() {
             </div>
             <div className="hero-facts" aria-label="Ключевые элементы карты">
               <div><strong>3</strong><span>ключевые роли</span></div>
-              <div><strong>10</strong><span>этапов клиента</span></div>
-              <div><strong>4</strong><span>незакрытые функции</span></div>
+              <div><strong>4</strong><span>роли исполнения</span></div>
+              <div><strong>10</strong><span>этапов сквозного пути клиента</span></div>
+              <div><strong>4</strong><span>роли требуют назначения владельцев</span></div>
             </div>
           </div>
           <div className="hero-visual">
@@ -209,7 +209,7 @@ export default function Home() {
             </div>
             <div className="scenario-note">
               <strong>Что получает клиент</strong>
-              <p>Контроль входной двери, автоматический вечерний/ночной сценарий света, управление и уведомление. Точная настройка сценария и границы бесплатной услуги требуют подтверждения.</p>
+              <p>Контроль входной двери, автоматический сценарий света, управление и уведомление. Точная настройка сценария и границы бесплатной услуги требуют подтверждения.</p>
             </div>
           </article>
 
@@ -222,7 +222,7 @@ export default function Home() {
               <li><span>03</span> Умный хаб Sber</li>
               <li><span>04</span> SberBoom Mini 2</li>
             </ul>
-            <div className="soft-warning"><StatusChip kind="confirm" /> Цена и скидка ниже перенесены из рабочего документа и не представлены как действующее коммерческое предложение.</div>
+            <div className="soft-warning"><StatusChip kind="confirm" /> Набор представлен в двух вариациях цветов выключателя.</div>
           </aside>
         </div>
 
@@ -239,7 +239,6 @@ export default function Home() {
                   <div><span>Полная стоимость</span><strong>{variant.total}</strong></div>
                   <div className="discount-price"><span>С учётом скидки АТЛОН</span><strong>{variant.discounted}</strong></div>
                 </div>
-                <p className="variant-note">{variant.note}</p>
               </div>
               <div className="variant-products">
                 <div className="product-item primary-product">
@@ -279,6 +278,7 @@ export default function Home() {
             {decisions.map((item, index) => (
               <details className="decision-card" key={item.title} open={index < 3}>
                 <summary>
+                  <span className="decision-number">{index + 1}</span>
                   <strong>{item.title}</strong>
                   <span className="summary-toggle" aria-hidden="true">+</span>
                 </summary>
@@ -322,11 +322,11 @@ export default function Home() {
         <article className="flow-detail" id="flow-detail" role="tabpanel" aria-labelledby={`flow-tab-${activeFlow}`}>
           <div className="flow-detail-title"><span className="flow-big-number">{currentFlow.number}</span><div><p className="mini-label">Выбранный этап</p><h3>{currentFlow.title}</h3><span className="handoff-pill">{currentFlow.handoff}</span></div></div>
           <div className="flow-detail-grid">
-            <div><span className="field-label">Триггер и задача клиента</span><p>{currentFlow.client}</p></div>
-            <div className="action-field"><span className="field-label">Фронт: действие команды</span><p>{currentFlow.team}</p></div>
-            <div><span className="field-label">Выход / передача</span><p>{currentFlow.output}</p></div>
-            <div className="risk-field"><span className="field-label">Боль или риск</span><p>{currentFlow.risk}</p></div>
-            <div className="growth-field"><span className="field-label">Точка роста</span><p>{currentFlow.growth}</p></div>
+            <div><span className="flow-field-heading"><b>1</b><span className="field-label">Триггер и задача клиента</span></span><p>{currentFlow.client}</p></div>
+            <div className="action-field"><span className="flow-field-heading"><b>2</b><span className="field-label">Фронт: действие команды</span></span><p>{currentFlow.team}</p></div>
+            <div><span className="flow-field-heading"><b>3</b><span className="field-label">Выход / передача</span></span><p>{currentFlow.output}</p></div>
+            <div className="risk-field"><span className="flow-field-heading"><b>4</b><span className="field-label">Боль или риск</span></span><p>{currentFlow.risk}</p></div>
+            <div className="growth-field"><span className="flow-field-heading"><b>5</b><span className="field-label">Точка роста</span></span><p>{currentFlow.growth}</p></div>
           </div>
         </article>
         <div className="critical-handoffs">
@@ -577,16 +577,17 @@ export default function Home() {
         <div className="shell final-grid">
           <div className="final-copy">
             <p className="eyebrow">08 · Что необходимо решить</p>
-            <h2>Подтвердить обещание, назначить владельцев, проверить путь на реальных объектах</h2>
+            <h2>Подтвердить запуск пилотной акции, назначить ответственных владельцев, проверить путь на реальных объектах</h2>
             <p>Текущая версия предназначена для совместной валидации и назначения владельцев. Она не является утверждённой операционной моделью или коммерческими условиями акции.</p>
             <a href="#top" className="back-top">Вернуться к началу ↑</a>
           </div>
           <div className="final-checks">
             {[
-              "Состав, цена, цвет и допустимые замены",
+              "Состав устройств, цена, цвет и допустимые замены",
               "Право на подарок и отражение в договоре/смете",
+              "Обучение сметчиков и внедрение услуги",
               "Монтаж, ПНР, приёмка, гарантия и поддержка",
-              "Владельцы, SLA и артефакты каждой передачи",
+              "Владельцы, SLA и артефакты на каждой реперной точки",
               "Инструментирование 5–10 пилотных объектов",
             ].map((item) => <div key={item}><Icon name="check" /><span>{item}</span></div>)}
           </div>
@@ -596,7 +597,6 @@ export default function Home() {
       <footer className="footer">
         <div className="shell footer-grid">
           <div><strong>SberDevices × АТЛОН</strong><p>Умная прихожая в подарок · CJ/CJM для рабочей сессии</p></div>
-          <div className="assumptions"><h3>Смысловые допущения и отмеченные пробелы</h3><ul>{sourceGaps.map((item) => <li key={item}>{item}</li>)}</ul></div>
         </div>
         <div className="shell footer-bottom"><span>Версия 0.1 • Рабочая гипотеза • Неутверждённый процесс</span><span>Источник: рабочий DOCX V2</span></div>
       </footer>
