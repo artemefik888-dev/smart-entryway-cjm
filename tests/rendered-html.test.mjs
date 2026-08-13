@@ -35,9 +35,14 @@ test("server-renders the CJ/CJM workspace", async () => {
   assert.match(html, /Версия 0\.1/);
   assert.match(html, /Рабочая гипотеза/);
   assert.match(html, /Паспорт оффера/);
+  assert.match(html, /Тезисный маршрут акции/);
+  assert.match(html, /Сквозной CJM всех ролей/);
+  assert.match(html, /Не закрытые роли/);
   assert.match(html, /CJM ключевых ролей/);
-  assert.match(html, /Путь клиента/);
-  assert.match(html, /Сквозной flow/);
+  assert.match(html, /CJ клиента/);
   assert.match(html, /Операционный слой/);
+  assert.match(html, /Что необходимо решить/);
+  assert.match(html, /Приоритетный backlog улучшений/);
+  assert.doesNotMatch(html, /Эмоциональная линия|Гипотеза напряжения клиента/);
   assert.doesNotMatch(html, /lorem ipsum/i);
 });
